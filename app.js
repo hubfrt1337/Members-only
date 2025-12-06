@@ -3,37 +3,47 @@ const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const passport = require("passport");
 const crypto = require("crypto");
-const { Pool } = require("pg");
+const pool = require("./db/pool");
 const LocalStrategy = require("passport-local").Strategy;
 require("dotenv").config()
 const routes = require("./routes/routes")
 
 
-const pool = new Pool({
-    host: "localhost",
-    user: "Dell",
-    password: "NaZ1337",
-    database: "members_only",
-    port: 5432
-})
 
-passport.use(new LocalStrategy(async function verify(username, password, done) {
-    const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [username])
-    const user = rows[0]
+
+// Use email as the usernameField since signup stores an email
+passport.use(new LocalStrategy({ usernameField: 'email' }, async function verify(email, password, done) {
     try {
+        const { rows } = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+        const user = rows[0];
         if (!user) {
-            return done(null, false, { message: "incorrect username" })
+            return done(null, false, { message: "Incorrect email" });
         }
-        if (user.password !== password) {
-            return done(null, false, { message: "incorect password" })
-        }
-        return done(null, user)
 
+        // NOTE: signup currently stores the plain password in password_hash column.
+        // Replace this comparison with a bcrypt.compare when you store hashed passwords.
+        if (user.password_hash !== password) {
+            return done(null, false, { message: "Incorrect password" });
+        }
+
+        return done(null, user);
     } catch (err) {
-        return done(err)
+        return done(err);
     }
 }));
 
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+})
+passport.deserializeUser(async (userId, done) => {
+    try {
+        const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [userId]);
+        const user = rows[0];
+        return done(null, user);
+    } catch (err) {
+        return done(err);
+    }
+})
 
 const app = express();
 app.use(express.json())
@@ -54,6 +64,17 @@ app.use(session({
     }
 
 }));
+// Initialize Passport and restore authentication state, if any.
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    res.locals.user = req.user;
+    next()
+})
+
+
 
 
 app.use(routes)
