@@ -2,7 +2,7 @@ const express = require('express');
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const passport = require("passport");
-const crypto = require("crypto");
+const bcrypt = require("bcryptjs")
 const pool = require("./db/pool");
 const LocalStrategy = require("passport-local").Strategy;
 require("dotenv").config()
@@ -20,12 +20,11 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, async function verify
             return done(null, false, { message: "Incorrect email" });
         }
 
-        // NOTE: signup currently stores the plain password in password_hash column.
-        // Replace this comparison with a bcrypt.compare when you store hashed passwords.
-        if (user.password_hash !== password) {
-            return done(null, false, { message: "Incorrect password" });
+        const match = await bcrypt.compare(password, user.password_hash);
+        
+        if(!match){
+             return done(null, false, { message: "Incorrect password" });
         }
-
         return done(null, user);
     } catch (err) {
         return done(err);
