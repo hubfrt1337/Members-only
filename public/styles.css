@@ -28,8 +28,7 @@ a{
 }
 
 .form-homepage,
-.form-signup,
-.add-msg{
+.form-signup{
     margin-top: 3rem;
     margin-bottom: 3rem;
     padding: 3rem;
@@ -92,6 +91,7 @@ a{
 .dashboard{
     background-color: var(--primary);
     min-height: 100vh;
+    position: relative;
 
 }
 nav{
@@ -106,7 +106,24 @@ nav{
     font-size: 1.5rem;
 }
 .nav-middle{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all linear 0.3s;
+}
+.nav-middle:hover .plus{
+    transform: scale(1.2)
+}
+
+.flex-username{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+.plus{
+    font-size: 1.8rem;
+    font-weight: normal;
 }
 .nav-right{
     display: flex;
@@ -122,6 +139,11 @@ nav{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
 }
 
 .create-btn{

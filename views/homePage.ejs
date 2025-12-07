@@ -19,7 +19,13 @@
             <nav>
                 <div class="nav-left">Members Only</div>
                 <div class="nav-middle">
-                    <%=user.first_name%>
+                    <div class="flex-username">
+                        <div>
+                            <%=user.first_name%>
+                        </div>
+                        <div class="plus">+</div>
+                    </div>
+
                 </div>
                 <div class="nav-right">
                     <div class="premium">Premium</div>
@@ -27,7 +33,7 @@
                 </div>
             </nav>
             <section class="add-message-container">
-                <form action="add-msg" method="post">
+                <form class="add-msg" action="/add-msg" method="post">
                     <input type="hidden" name="userId" id="userId">
                     <div>
                         <p class="label">
@@ -70,5 +76,5 @@
             <% } %>
 
 </body>
-
+<script src="/home.js"></script>
 </html>
