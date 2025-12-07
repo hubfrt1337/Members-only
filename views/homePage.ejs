@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Members only</title>
     <link rel="stylesheet" href="/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,10 +13,46 @@
 </head>
 
 <body>
-    <main class="homepage-main">
-        <% if(locals.user){ %>
-            <h1>User istnieje</h1>
-            <%} else { %>
+
+    <% if(locals.user){ %>
+        <main class="dashboard">
+            <nav>
+                <div class="nav-left">Members Only</div>
+                <div class="nav-middle">
+                    <%=user.first_name%>
+                </div>
+                <div class="nav-right">
+                    <div class="premium">Premium</div>
+                    <div class="logout"><a href="/logout">Log out</a></div>
+                </div>
+            </nav>
+            <section class="add-message-container">
+                <form action="add-msg" method="post">
+                    <input type="hidden" name="userId" id="userId">
+                    <div>
+                        <p class="label">
+                            <label for="title">Title</label>
+                        </p>
+                        <input type="text" name="title" id="title">
+                    </div>
+                    <div>
+                        <p class="label">
+                            <label for="body">Share your thoughts!</label>
+                        </p>
+                        <textarea name="body" id="body" rows="4" cols="50"></textarea>
+                    </div>
+                    <button class="create-btn" type="submit">Create</button>
+                </form>
+            </section>
+            <section class="messages-section">
+
+            </section>
+        </main>
+
+
+
+        <%} else { %>
+            <main class="homepage-main">
                 <form class="form-homepage" action="/login" method="post">
                     <div class="login-text">Login</div>
                     <div>
@@ -30,8 +66,9 @@
                     <button class="submit-btn" type="submit">Sign in</button>
                     <div><a href="/signup">Don't have an acocut? Sign up!</a></div>
                 </form>
-                <% } %>
-    </main>
+            </main>
+            <% } %>
+
 </body>
 
 </html>

@@ -39,4 +39,14 @@ routes.get("/logout", (req, res, next) => {
     });
     
 })
+
+routes.post("/add-msg", async (req, res, next) => {
+    try {
+        const {userId, title, body} = req.body;
+        await pool.query("INSERT INTO messages (user_id, title, body) VALUES", [userId, title, body])
+        res.redirect("/");
+    } catch (err) {
+        return next(err)
+    }
+})
 module.exports = routes;
