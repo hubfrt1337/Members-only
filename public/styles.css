@@ -1,0 +1,71 @@
+:root {
+    --primary: #31081F; 
+    --secondary: #6B0F1A;
+    --third: #595959;
+    --text-color: #DCE0D9;
+    --text-color-secondary: #808F85;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    color: var(--text-color);
+}
+
+a{
+    text-decoration: none;
+}
+.homepage-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--primary);
+}
+
+.form-homepage{
+    padding: 3rem;
+    background-color: var(--secondary);
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+.login-text{
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    
+}
+
+.label{
+    text-align: left;
+    font-size: 1.5rem;
+}
+#email,
+#password{
+    width: 100%;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    min-width: 320px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+.submit-btn{
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: var(--third);
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+.submit-btn:hover{
+    background-color: var(--text-color-secondary);
+}
