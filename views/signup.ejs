@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    <h1>Register</h1>
-    <form action="/signup" method="post">
-        <label for="firstname">Firstname</label>
-        <input type="text" id="firstname" name="firstname">
-        <label for="lastname">Lastname</label>
-        <input type="text" name="lastname" id="lastname">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password">
-        <button type="submit">Sign up</button>
-    </form>
+    <main class="signup-main">
+        <form class="form-signup" action="/signup" method="post">
+            <div class="login-text">Register</div>
+            <div>
+                <p class="label">
+                    <label for="firstname">Firstname</label>
+                </p>
+                <input type="text" id="firstname" name="firstname">
+            </div>
+            <div>
+                <p class="label">
+                    <label for="lastname">Lastname</label>
+                </p>
+                <input type="text" name="lastname" id="lastname">
+            </div>
+            <div>
+                <p class="label">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+                </p>
+            </div>
+            <div>
+                <p class="label">
+                    <label for="password">Password</label>
+                </p>
+                <input type="password" name="password" id="password">
+            </div>
+            <button class="signup-btn" type="submit">Sign up</button>
+        </form>
+    </main>
 </body>
+
 </html>

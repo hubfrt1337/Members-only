@@ -26,7 +26,10 @@ a{
     background-color: var(--primary);
 }
 
-.form-homepage{
+.form-homepage,
+.form-signup{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     padding: 3rem;
     background-color: var(--secondary);
     border-radius: 0.5rem;
@@ -44,7 +47,9 @@ a{
     font-size: 1.5rem;
 }
 #email,
-#password{
+#password,
+#firstname,
+#lastname{
     width: 100%;
     border: none;
     padding: 1rem;
@@ -53,8 +58,11 @@ a{
     min-width: 320px;
     margin-bottom: 0.5rem;
     cursor: pointer;
+    color: black;
+    font-size: 1.2rem;
 }
-.submit-btn{
+.submit-btn,
+.signup-btn{
     width: 100%;
     padding: 1rem;
     text-align: center;
@@ -65,7 +73,22 @@ a{
     border-radius: 0.5rem;
     cursor: pointer;
     margin-bottom: 0.5rem;
+    
 }
-.submit-btn:hover{
+.submit-btn:hover,
+.signup-btn:hover{
     background-color: var(--text-color-secondary);
+}
+
+
+
+
+/* sign up Page */
+.signup-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--primary);
 }
