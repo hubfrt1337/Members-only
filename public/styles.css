@@ -109,10 +109,11 @@ nav{
     font-size: 1.5rem;
     font-weight: normal;
     cursor: pointer;
-    transition: all linear 0.3s;
+    
 }
-.nav-middle:hover .plus{
-    transform: scale(1.2)
+.plus:hover{
+    transition: all linear 0.1s;
+    transform: scale(1.2);
 }
 
 .flex-username{
@@ -156,4 +157,18 @@ nav{
     border-radius: 0.5rem;
     cursor: pointer;
     margin-bottom: 0.5rem;
+}
+
+
+.messages-section{
+    margin-top: 50px;
+}
+.swiper{
+    max-height: 70vh;
+    max-width: 500px;
+}
+.message-container{
+    color: black;
+    width: 100%;
+   background-color: white; 
 }

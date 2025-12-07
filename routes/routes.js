@@ -4,9 +4,11 @@ const pool = require("../db/pool");
 const passport = require("passport")
 const bcrypt = require("bcryptjs")
 
-routes.get("/", (req, res) => {
+routes.get("/", async (req, res) => {
     console.log(req.user);
-    res.render("homePage", { user: req.user });
+    const {rows} = await pool.query("SELECT * FROM messages")
+    console.log(rows)
+    res.render("homePage", { user: req.user, message: rows });
 })
 
 routes.post('/login', passport.authenticate('local', {
@@ -43,7 +45,7 @@ routes.get("/logout", (req, res, next) => {
 routes.post("/add-msg", async (req, res, next) => {
     try {
         const {userId, title, body} = req.body;
-        await pool.query("INSERT INTO messages (user_id, title, body) VALUES", [userId, title, body])
+        await pool.query("INSERT INTO messages (user_id, title, body) VALUES ($1, $2, $3)", [userId, title, body])
         res.redirect("/");
     } catch (err) {
         return next(err)

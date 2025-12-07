@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -20,7 +23,7 @@
                 <div class="nav-left">Members Only</div>
                 <div class="nav-middle">
                     <div class="flex-username">
-                        <div>
+                        <div class="user-name">
                             <%=user.first_name%>
                         </div>
                         <div class="plus">+</div>
@@ -34,24 +37,57 @@
             </nav>
             <section class="add-message-container">
                 <form class="add-msg" action="/add-msg" method="post">
-                    <input type="hidden" name="userId" id="userId">
+                    <input type="hidden" name="userId" id="userId" value="<%= user.id %>">
                     <div>
                         <p class="label">
                             <label for="title">Title</label>
                         </p>
-                        <input type="text" name="title" id="title">
+                        <input type="text" name="title" id="title" required>
                     </div>
                     <div>
                         <p class="label">
                             <label for="body">Share your thoughts!</label>
                         </p>
-                        <textarea name="body" id="body" rows="4" cols="50"></textarea>
+                        <textarea name="body" id="body" rows="4" cols="50"></textarea required>
                     </div>
                     <button class="create-btn" type="submit">Create</button>
                 </form>
             </section>
             <section class="messages-section">
+                <div class="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+     <% if(message.length > 0 ){ 
+        message.forEach(msg => {
+            %> <div class="swiper-wrapper">
+                <div class="message-container">
+                    <div class="msg-user">
+                        <div class="firstname"><%=msg.userId%></div>
+                        <div class="lastname"></div>
+                    </div>
+                    <div class="msg-time"><%=msg.created_at%></div>
+                    <div class="msg-title"><%=msg.title%></div>
+                    
+                    <div class="msg-body"><%=msg.body%></div>
+                    
+                    
+                </div>
+            </div>
+        <%}) } %>
+    <div class="swiper-slide">
+        <div class="message-container">
+            
+        </div>
+    </div>
+    <div class="swiper-slide">Slide 2</div>
+    <div class="swiper-slide">Slide 3</div>
+    ...
+  </div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
 
+</div>
             </section>
         </main>
 
