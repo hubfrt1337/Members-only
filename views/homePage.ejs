@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Members only</title>
-    <link rel="stylesheet" href="/styles.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
@@ -56,12 +57,10 @@
             <section class="messages-section">
                 <div class="swiper">
   <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
-    <!-- Slides -->
+   <div class="swiper-wrapper">
      <% if(message.length > 0 ){ 
         message.forEach(msg => {
-            %> <div class="swiper-wrapper">
-                <div class="message-container">
+            %> <div class="swiper-slide">
                     <div class="msg-user">
                         <div class="firstname"><%=msg.userId%></div>
                         <div class="lastname"></div>
@@ -71,22 +70,13 @@
                     
                     <div class="msg-body"><%=msg.body%></div>
                     
-                    
-                </div>
             </div>
         <%}) } %>
-    <div class="swiper-slide">
-        <div class="message-container">
-            
-        </div>
-    </div>
-    <div class="swiper-slide">Slide 2</div>
-    <div class="swiper-slide">Slide 3</div>
-    ...
-  </div>
+   </div>
   <!-- If we need pagination -->
   <div class="swiper-pagination"></div>
-
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
 </div>
             </section>
         </main>
