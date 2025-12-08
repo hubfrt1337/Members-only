@@ -187,7 +187,22 @@ nav{
     width: 100%;
     background-color: white; 
 }
-.swiper-pagination-bullet{
-    width: 15px;
-    height: 15px;
+.msg-top-flex{
+    display: flex;
+    justify-content: space-between;
+}
+.msg-user{
+    display: flex;
+    gap: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.msg-time{
+    font-size: 0.8rem;
+}
+.msg-title{
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.2rem;
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Members only</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
@@ -61,11 +61,14 @@
      <% if(message.length > 0 ){ 
         message.forEach(msg => {
             %> <div class="swiper-slide">
-                    <div class="msg-user">
-                        <div class="firstname"><%=msg.userId%></div>
-                        <div class="lastname"></div>
+                    <div class="msg-top-flex">
+                        <div class="msg-user">
+                            <div class="firstname"><%=msg.first_name%></div>
+                            <div class="lastname"><%=msg.last_name%></div>
+                        </div>
+                     <div class="msg-time"><%=msg.created_at.toLocaleString()%></div>
                     </div>
-                    <div class="msg-time"><%=msg.created_at%></div>
+                    
                     <div class="msg-title"><%=msg.title%></div>
                     
                     <div class="msg-body"><%=msg.body%></div>
