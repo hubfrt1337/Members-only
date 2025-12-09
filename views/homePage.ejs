@@ -21,7 +21,7 @@
     <% if(locals.user){ %>
         <main class="dashboard">
             <nav>
-                <div class="nav-left">Members Only Club</div>
+                <div class="nav-left"><a href="/">Members Only Club</a></div>
                 <div class="nav-middle">
                     <div class="flex-username">
                         <div class="user-name">
@@ -63,8 +63,16 @@
             %> <div class="swiper-slide">
                     <div class="msg-top-flex">
                         <div class="msg-user">
-                            <div class="firstname"><%=msg.first_name%></div>
-                            <div class="lastname"><%=msg.last_name%></div>
+                            <% if(user.membership_status === 'premium'){ %>
+                            <div class="firstname">
+                                <%=msg.first_name%></div><% } else { %>
+                                    <div class="firstname">Anonymous</div>
+                            <% } %>
+                            <div class="lastname">
+                                <% if(user.membership_status === 'premium'){ %>
+                                <%=msg.last_name%><% } else { %>
+                                    <%=msg.last_name.charAt(0)%>.<% } %>
+                                </div>
                         </div>
                      <div class="msg-time"><%=msg.created_at.toLocaleString()%></div>
                     </div>

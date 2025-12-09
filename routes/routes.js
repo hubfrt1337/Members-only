@@ -5,7 +5,7 @@ const passport = require("passport")
 const bcrypt = require("bcryptjs")
 
 routes.get("/", async (req, res) => {
-    const {rows} = await pool.query("SELECT users.first_name, users.last_name, messages.title, messages.body, messages.created_at FROM users INNER JOIN messages ON users.id = messages.user_id")
+    const {rows} = await pool.query("SELECT users.first_name, users.last_name, messages.title, messages.body, messages.created_at, users.membership_status FROM users INNER JOIN messages ON users.id = messages.user_id")
     console.log(rows)
     res.render("homePage", { user: req.user, message: rows });
 })

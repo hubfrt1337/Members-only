@@ -183,12 +183,14 @@ nav{
 
 
 .messages-section{
-    margin-top: 2rem
+    margin-top: 2rem;
+    
 }
 .swiper {
   width: 400px;
   height: 75vh;
-  color: black;
+  color: var(--primary)
+  
 }
 .swiper-slide {
   border: 1px solid #ccc;
@@ -196,12 +198,13 @@ nav{
   height: auto;
   background-color: #fff;
   border-radius: 0.5rem;
+  background-color: var(--secondary);
 }
 
 .message-container{
-    color: black;
+    color: var(--primary);
     width: 100%;
-    background-color: white; 
+   
 }
 .msg-top-flex{
     display: flex;
@@ -223,7 +226,11 @@ nav{
     margin-bottom: 0.2rem;
 }
 
-
+.msg-body{
+    font-size: 1rem;
+    color: var(--primary);
+    opacity: 0.7;
+}
 /* premium page*/
 .main-premium{
     display: flex;

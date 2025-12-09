@@ -30,8 +30,8 @@
                 </div>
             </nav>
     <main class="main-premium">
-        
-        <div class="container-premium">
+        <% if(user.membership_status === null){ %>
+            <div class="container-premium">
             <form action="/premium" method="post">
                 <p class="question">
                     <p>
@@ -48,6 +48,10 @@
                 
             </form>
         </div>
+            <% } else { %>
+            <h2 class="already-premium">You are already a premium member!</h2>
+        <% } %>
+        
     </main>
 </body>
 
