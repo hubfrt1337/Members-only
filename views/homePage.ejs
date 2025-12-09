@@ -21,7 +21,7 @@
     <% if(locals.user){ %>
         <main class="dashboard">
             <nav>
-                <div class="nav-left">Members Only</div>
+                <div class="nav-left">Members Only Club</div>
                 <div class="nav-middle">
                     <div class="flex-username">
                         <div class="user-name">
@@ -32,7 +32,7 @@
 
                 </div>
                 <div class="nav-right">
-                    <div class="premium">Premium</div>
+                    <div class="premium"><a href="/premium">Premium</a></div>
                     <div class="logout"><a href="/logout">Log out</a></div>
                 </div>
             </nav>
@@ -99,7 +99,7 @@
                         <input type="password" name="password" id="password">
                     </div>
                     <button class="submit-btn" type="submit">Sign in</button>
-                    <div><a href="/signup">Don't have an acocut? Sign up!</a></div>
+                    <div><a class="a-sign" href="/signup">Don't have an acocut? Sign up!</a></div>
                 </form>
             </main>
             <% } %>

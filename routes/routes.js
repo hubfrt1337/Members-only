@@ -5,10 +5,31 @@ const passport = require("passport")
 const bcrypt = require("bcryptjs")
 
 routes.get("/", async (req, res) => {
-    console.log(req.user);
     const {rows} = await pool.query("SELECT users.first_name, users.last_name, messages.title, messages.body, messages.created_at FROM users INNER JOIN messages ON users.id = messages.user_id")
     console.log(rows)
     res.render("homePage", { user: req.user, message: rows });
+})
+
+// Middleware to check if user is authenticated
+const isAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
+}
+
+routes.get("/premium", async (req, res) => {
+    res.render("premium", {membership: false})
+})
+routes.post("/premium", isAuthenticated, async (req, res) => {
+    const {premium} = req.body;
+    const answer = premium.toLowerCase();
+    let membership = 'Wrong answer, try again!';
+    if(answer === 'dachshund'){
+        await pool.query("UPDATE users SET membership_status = 'premium' WHERE id = $1", [req.user.id])
+        membership = "Right answer, you got a premium account!";
+    }
+    res.render("premium", {membership: membership})
 })
 
 routes.post('/login', passport.authenticate('local', {
@@ -42,7 +63,7 @@ routes.get("/logout", (req, res, next) => {
     
 })
 
-routes.post("/add-msg", async (req, res, next) => {
+routes.post("/add-msg", isAuthenticated, async (req, res, next) => {
     try {
         const {userId, title, body} = req.body;
         await pool.query("INSERT INTO messages (user_id, title, body) VALUES ($1, $2, $3)", [userId, title, body])

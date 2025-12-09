@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Only</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+                <div class="nav-left"><a href="/">Members Only Club</a></div>
+                <div class="nav-middle">
+                    <div class="flex-username">
+                        <div class="user-name">
+                            <%=user.first_name%>
+                        </div>
+                        <div class="plus">+</div>
+                    </div>
+
+                </div>
+                <div class="nav-right">
+                    <div class="premium"><a href="/premium">Premium</a></div>
+                    <div class="logout"><a href="/logout">Log out</a></div>
+                </div>
+            </nav>
+    <main class="main-premium">
+        
+        <div class="container-premium">
+            <form action="/premium" method="post">
+                <p class="question">
+                    <p>
+                        Answer our question and get a premium account!
+                    </p>
+                    <p class="question">What is the breed of dog that, although short, is very long?</p>
+                </p>
+                <input type="text" name="premium" id="premium">
+                
+                <button class="btn-premium" type="submit">Get Premium!</button>
+                <div class="hidden-msg"><% if(membership){ %>
+                    <div class="answer"><%= membership %></div> <%} %>
+                </div>
+                
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
