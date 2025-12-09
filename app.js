@@ -51,16 +51,25 @@ app.use(express.static("public"))
 
 app.set("view engine", "ejs")
 
+// If running behind a proxy (Vercel), enable trust proxy so secure cookies work
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1);
+}
+
 app.use(session({
     store: new pgSession({
         pool: pool,
-        tablename: "session"
+       
+        tableName: "session"
     }),
-    secret: process.env.SECRET,
+    
+    secret: process.env.SESSION_SECRET || process.env.SECRET || 'dev_fallback_change_me',
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxage: 30 * 24 * 60 * 60 * 1000
+        
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 30 * 24 * 60 * 60 * 1000
     }
 
 }));
